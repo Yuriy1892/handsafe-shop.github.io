@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Защита рук — краги и перчатки</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2c3e50;
+            background: #f9f9f9;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка */
+        header {
+            background: #1e3c5c;
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            font-size: 32px;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffd966;
+        }
+
+        .burger {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        /* Герой */
+        .hero {
+            background: linear-gradient(135deg, #1e3c5c, #2c5f2d);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ffd966;
+            color: #1e3c5c;
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: background 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #ffc107;
+            transform: translateY(-2px);
+        }
+
+        /* Каталог */
+        .catalog {
+            padding: 70px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #ffd966;
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: #f4f7f9;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+        }
+
+        .card-image {
+            height: 220px;
+            background: #e0e7ef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 70px;
+            background: linear-gradient(145deg, #d9e2ec, #ffffff);
+        }
+
+        .card-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #555;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1e3c5c;
+            margin-bottom: 15px;
+        }
+
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #25D366;
+            color: white;
+            padding: 12px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+            margin-top: auto;
+        }
+
+        .whatsapp-btn:hover {
+            background: #1da851;
+        }
+
+        /* Почему мы */
+        .features {
+            padding: 70px 0;
+            background: #f4f7f9;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .feature-item h3 {
+            margin-bottom: 10px;
+        }
+
+        /* Контакты */
+        .contacts {
+            padding: 70px 0;
+            background: white;
+            text-align: center;
+        }
+
+        .contacts p {
+            font-size: 18px;
+            margin: 8px 0;
+        }
+
+        .contacts a {
+            color: #1e3c5c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer {
+            background: #1e3c5c;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        /* Мобильное меню */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: #1e3c5c;
+                padding: 20px;
+                gap: 15px;
+                margin-top: 15px;
+                border-radius: 10px;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .burger {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-inner">
+            <div class="logo">
+                <span>🧤</span> HandSafe
+            </div>
+            <div class="burger" id="burger">☰</div>
+            <nav id="nav">
+                <a href="#catalog">Каталог</a>
+                <a href="#features">Почему мы</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Защита рук для любых задач</h1>
+            <p>Краги, перчатки рабочие и специальные — прочные материалы, надёжная защита, доступные цены. Доставка по всей стране.</p>
+            <a href="#catalog" class="btn">Смотреть товары</a>
+        </div>
+    </section>
+
+    <section id="catalog" class="catalog">
+        <div class="container">
+            <h2 class="section-title">Популярные товары</h2>
+            <div class="grid">
+                <!-- Карточка 1 -->
+                <div class="card">
+                    <div class="card-image">🧤</div>
+                    <div class="card-content">
+                        <h3>Краги сварщика</h3>
+                        <p>Спилковые, термостойкие, длина 35 см. Надёжная защита от искр и брызг.</p>
+                        <div class="price">от 450 ₽</div>
+                        <a class="whatsapp-btn" href="https://wa.me/79161234567?text=Здравствуйте%2C%20хочу%20заказать%20Краги%20сварщика" target="_blank">
+                            📱 Заказать в WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <!-- Карточка 2 -->
+                <div class="card">
+                    <div class="card-image">🧤</div>
+                    <div class="card-content">
+                        <h3>Перчатки Х/Б с ПВХ</h3>
+                        <p>Нейлоновые, ладонное покрытие ПВХ «точка». Для строительства и сада.</p>
+                        <div class="price">от 120 ₽</div>
+                        <a class="whatsapp-btn" href="https://wa.me/79161234567?text=Здравствуйте%2C%20хочу%20заказать%20Перчатки%20Х%2FБ%20с%20ПВХ" target="_blank">
+                            📱 Заказать в WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <!-- Карточка 3 -->
+                <div class="card">
+                    <div class="card-image">🧤</div>
+                    <div class="card-content">
+                        <h3>Нитриловые перчатки</h3>
+                        <p>Устойчивы к маслу и химии, не вызывают аллергии. Чёрные/синие.</p>
+                        <div class="price">от 350 ₽</div>
+                        <a class="whatsapp-btn" href="https://wa.me/79161234567?text=Здравствуйте%2C%20хочу%20заказать%20Нитриловые%20перчатки" target="_blank">
+                            📱 Заказать в WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <!-- Карточка 4 -->
+                <div class="card">
+                    <div class="card-image">🧤</div>
+                    <div class="card-content">
+                        <h3>Краги спилковые</h3>
+                        <p>Универсальные рабочие краги с усиленной ладонью. Размеры M–XL.</p>
+                        <div class="price">от 380 ₽</div>
+                        <a class="whatsapp-btn" href="https://wa.me/79161234567?text=Здравствуйте%2C%20хочу%20заказать%20Краги%20спилковые" target="_blank">
+                            📱 Заказать в WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Почему выбирают нас</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">✅</div>
+                    <h3>Сертификаты</h3>
+                    <p>Вся продукция соответствует ГОСТ и ТР ТС.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🚚</div>
+                    <h3>Быстрая доставка</h3>
+                    <p>Отправка в день заказа по России.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💰</div>
+                    <h3>Цены производителя</h3>
+                    <p>Без наценок посредников.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📦</div>
+                    <h3>Любые объёмы</h3>
+                    <p>От 1 пары до оптовых партий.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacts" class="contacts">
+        <div class="container">
+            <h2 class="section-title">Контакты</h2>
+            <p>📞 Телефон: <a href="tel:+79161234567">+7 (916) 123-45-67</a></p>
+            <p>📧 Email: <a href="mailto:sale@handsafe.ru">sale@handsafe.ru</a></p>
+            <p>📍 Адрес склада: г. Москва, ул. Защитная, д.10</p>
+            <br>
+            <a href="https://wa.me/79161234567" class="whatsapp-btn" style="max-width: 300px; margin: 0 auto;">
+                💬 Написать в WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            © 2026 HandSafe — средства защиты рук. Все права защищены.
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const burger = document.getElementById('burger');
+        const nav = document.getElementById('nav');
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        // Закрывать меню при клике на ссылку (для удобства)
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
